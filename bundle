@@ -1,6 +1,8 @@
 package aws
 package bass
+package foreign-env
 package iex
+package nvm
 package pyenv
 theme coffeeandcode
 theme default
