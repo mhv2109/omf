@@ -15,3 +15,14 @@ if test -x (which pyenv)
         status --is-interactive; and pyenv virtualenv-init - | source
     end
 end
+
+# ESP32 Development
+if test -d $HOME/.espressif
+    set -Ux IDF_TOOLS_PATH $HOME/.espressif
+end
+if test -d $HOME/esp-idf
+    set -Ux IDF_PATH $HOME/esp-idf
+    function source-esp-idf
+        bass source $IDF_PATH/export.sh
+    end
+end
