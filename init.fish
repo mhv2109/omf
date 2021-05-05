@@ -12,7 +12,7 @@ set -Ux ERL_AFLAGS "-kernel shell_history enabled"
 if test -x (which pyenv)
     status --is-interactive; and pyenv init - | source
     if test -d (pyenv root)/plugins/pyenv-virtualenv
-        status --is-interactive; and pyenv virtualenv-init - | source
+        status --is-interactive; and source (pyenv virtualenv-init -|psub)
     end
 end
 
