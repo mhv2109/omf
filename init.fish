@@ -15,3 +15,25 @@ if test -x (which pyenv)
         status --is-interactive; and pyenv virtualenv-init - | source
     end
 end
+
+# useful functions
+
+function lower
+    if isatty stdin # not a pipe or redirection
+        for arg in $argv
+            echo $arg | lower
+        end
+    else
+        tr '[:upper:]' '[:lower:]' $argv
+    end        
+end
+
+function upper
+    if isatty stdin # not a pipe or redirection
+        for arg in $argv
+            echo $arg | upper
+        end
+    else
+        tr '[:lower:]' '[:upper:]' $argv
+    end 
+end
