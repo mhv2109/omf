@@ -5,6 +5,11 @@ if test -d /etc/profile.d
     end
 end
 
+# load private env vars
+if test -f $HOME/.config/omf/env.fish
+	source $HOME/.config/omf/env.fish
+end
+
 # Elixir & Erlang
 set -Ux ERL_AFLAGS "-kernel shell_history enabled"
 
