@@ -1,5 +1,6 @@
 package aws
 package bass
+package docker-machine
 package foreign-env
 package iex
 package nvm
