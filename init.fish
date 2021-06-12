@@ -32,6 +32,13 @@ if test -d $HOME/esp-idf
     end
 end
 
+# Go Development
+if set -q GOPATH
+	fish_add_path -a $GOPATH/bin
+else if test -d $HOME/go/bin
+	fish_add_path -a $HOME/go/bin
+end
+
 # useful functions
 
 function lower
