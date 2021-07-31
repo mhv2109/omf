@@ -10,6 +10,11 @@ if test -f $HOME/.config/omf/env.fish
 	source $HOME/.config/omf/env.fish
 end
 
+# Local User path
+if test -d $HOME/.local/bin
+	fish_add_path -a $HOME/.local/bin
+end
+
 # Elixir & Erlang
 set -Ux ERL_AFLAGS "-kernel shell_history enabled"
 
@@ -43,11 +48,6 @@ if set -q GOPATH
 	fish_add_path -a $GOPATH/bin
 else if test -d $HOME/go/bin
 	fish_add_path -a $HOME/go/bin
-end
-
-# Local User path
-if test -d $HOME/.local/bin
-	fish_add_path -a $HOME/.local/bin
 end
 
 # useful functions
