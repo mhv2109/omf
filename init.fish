@@ -15,10 +15,16 @@ set -Ux ERL_AFLAGS "-kernel shell_history enabled"
 
 # pyenv and pyenv-virtualenv init (if installed)
 if test -x (which pyenv)
-    status --is-interactive; and pyenv init - | source
+    status is-interactive; and pyenv init --path | source
+    pyenv init - | source
     if test -d (pyenv root)/plugins/pyenv-virtualenv
         status --is-interactive; and source (pyenv virtualenv-init -|psub)
     end
+end
+
+# poetry autocomplete
+if test -x (which poetry)
+    source $HOME/.config/omf/completions/poetry.fish
 end
 
 # ESP32 Development
@@ -37,6 +43,11 @@ if set -q GOPATH
 	fish_add_path -a $GOPATH/bin
 else if test -d $HOME/go/bin
 	fish_add_path -a $HOME/go/bin
+end
+
+# Local User path
+if test -d $HOME/.local/bin
+	fish_add_path -a $HOME/.local/bin
 end
 
 # useful functions
