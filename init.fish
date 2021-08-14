@@ -10,6 +10,14 @@ if test -f $HOME/.config/omf/env.fish
 	source $HOME/.config/omf/env.fish
 end
 
+# .NET
+if test -d $HOME/.dotnet
+    if test -x $HOME/.dotnet/dotnet
+        fish_add_path -a $HOME/.dotnet
+	set -U DOTNET_CLI_TELEMETRY_OPTOUT true
+    end
+end
+
 # Elixir & Erlang
 set -Ux ERL_AFLAGS "-kernel shell_history enabled"
 
