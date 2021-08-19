@@ -15,6 +15,14 @@ if test -d $HOME/.local/bin
 	fish_add_path -a $HOME/.local/bin
 end
 
+# .NET
+if test -d $HOME/.dotnet
+    if test -x $HOME/.dotnet/dotnet
+        fish_add_path -a $HOME/.dotnet
+	set -U DOTNET_CLI_TELEMETRY_OPTOUT true
+    end
+end
+
 # Elixir & Erlang
 set -Ux ERL_AFLAGS "-kernel shell_history enabled"
 
