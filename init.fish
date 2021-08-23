@@ -20,6 +20,7 @@ if test -d $HOME/.dotnet
     if test -x $HOME/.dotnet/dotnet
         fish_add_path -a $HOME/.dotnet
 	set -U DOTNET_CLI_TELEMETRY_OPTOUT true
+        set -U DOTNET_ROOT $HOME/.dotnet
     end
 end
 
