@@ -28,7 +28,8 @@ end
 set -Ux ERL_AFLAGS "-kernel shell_history enabled"
 
 # pyenv and pyenv-virtualenv init (if installed)
-if test -x (which pyenv)
+set pyenv_path (command -v pyenv)
+if test -x "$pyenv_path"
     status is-interactive; and pyenv init --path | source
     pyenv init - | source
     if test -d (pyenv root)/plugins/pyenv-virtualenv
@@ -37,7 +38,8 @@ if test -x (which pyenv)
 end
 
 # poetry autocomplete
-if test -x (which poetry)
+set poetry_path (command -v poetry)
+if test -x "$poetry_path"
     source $HOME/.config/omf/completions/poetry.fish
 end
 
