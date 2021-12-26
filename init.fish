@@ -1,7 +1,7 @@
 # load bash profiles
 if test -d /etc/profile.d
     for file in /etc/profile.d/*.sh
-        bass source $file
+        bass source $file > /dev/null 2>&1
     end
 end
 
