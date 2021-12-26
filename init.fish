@@ -15,6 +15,13 @@ if test -d $HOME/.local/bin
 	fish_add_path -a $HOME/.local/bin
 end
 
+# asdf
+if test -d $HOME/.asdf
+    if test -f $HOME/.asdf/asdf.fish
+        source $HOME/.asdf/asdf.fish
+    end
+end
+
 # .NET
 if test -d $HOME/.dotnet
     if test -x $HOME/.dotnet/dotnet
