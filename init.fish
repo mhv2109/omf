@@ -62,6 +62,10 @@ if test -d $HOME/esp-idf
 end
 
 # Go Development
+if test -x go && ! set -q GOPATH
+	set -Ux GOPATH $HOME/go
+end
+
 if set -q GOPATH
 	fish_add_path -a $GOPATH/bin
 else if test -d $HOME/go/bin
