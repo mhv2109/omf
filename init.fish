@@ -93,3 +93,22 @@ function upper
         tr '[:lower:]' '[:upper:]' $argv
     end 
 end
+
+function dl-website -a 'index'
+    if test -z $index
+        echo 'missing \'index\' argument'
+        return 1
+    end
+    if ! type -f wget
+        echo 'missing \'wget\'' 
+        return 1
+    end
+    wget \
+    -e robots=off \
+    --page-requisites \
+    --span-hosts \
+    --convert-links \
+    --domains (echo $index | sed -e 's|^[^/]*//||' -e 's|/.*$||') \
+    --no-parent \
+    -r -p $index
+end
