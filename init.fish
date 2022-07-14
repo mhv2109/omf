@@ -1,3 +1,5 @@
+set OMF_CONFIG_PATH $HOME/.config/omf
+
 # load bash profiles
 if test -d /etc/profile.d
     for file in /etc/profile.d/*.sh
@@ -6,8 +8,8 @@ if test -d /etc/profile.d
 end
 
 # load private env vars
-if test -f $HOME/.config/omf/env.fish
-	source $HOME/.config/omf/env.fish
+if test -f $OMF_CONFIG_PATH/env.fish
+	source $OMF_CONFIG_PATH/env.fish
 end
 
 # Local User path
@@ -47,7 +49,7 @@ end
 # poetry autocomplete
 set poetry_path (command -v poetry)
 if test -x "$poetry_path"
-    source $HOME/.config/omf/completions/poetry.fish
+    source $OMF_CONFIG_PATH/completions/poetry.fish
 end
 
 # ESP32 Development
@@ -111,4 +113,21 @@ function dl-website -a 'index'
     --domains (echo $index | sed -e 's|^[^/]*//||' -e 's|/.*$||') \
     --no-parent \
     -r -p $index
+end
+
+function macos-change-background-all-desktops -a 'image'
+    if test -z $image
+        echo 'missing \'image\' argument'
+        return 1
+    end
+    if ! test -e $image
+        echo "No image file found at $image"
+        return 1
+    end
+    set OS (uname)
+    if [ "$OS" != 'Darwin' ]
+        echo 'function requires macOS'
+        return 1
+    end
+    osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$image\""
 end
