@@ -96,7 +96,7 @@ function upper
     end 
 end
 
-function dl-website -a 'index'
+function dl-website -a 'index' 'path'
     if test -z $index
         echo 'missing \'index\' argument'
         return 1
@@ -105,6 +105,10 @@ function dl-website -a 'index'
         echo 'missing \'wget\'' 
         return 1
     end
+    set addlargs ''
+    if test -nz $path
+        set addlargs -P $path
+    end
     wget \
     -e robots=off \
     --page-requisites \
@@ -112,6 +116,7 @@ function dl-website -a 'index'
     --convert-links \
     --domains (echo $index | sed -e 's|^[^/]*//||' -e 's|/.*$||') \
     --no-parent \
+    $addlargs \
     -r -p $index
 end
 
