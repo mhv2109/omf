@@ -3,7 +3,10 @@ set OMF_CONFIG_PATH $HOME/.config/omf
 # load bash profiles
 if test -d /etc/profile.d
     for file in /etc/profile.d/*.sh
-        bass source $file > /dev/null 2>&1
+    	if test $file != "/etc/profile.d/which2.sh"
+	   # There's an issue with command substitution in which2.sh, having trouble handling gracefully
+	   bass source $file > /dev/null 2>&1
+	end
     end
 end
 
